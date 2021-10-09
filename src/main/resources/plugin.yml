@@ -1,0 +1,6 @@
+main: com.github.mcsim415.sample.Main
+name: sample
+version: '1.0.0'
+author: mcsim415
+description: Plugin description
+api-version: 1.17
