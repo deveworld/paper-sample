@@ -19,9 +19,9 @@ dependencies {
 
     implementation("org.jetbrains.kotlin:kotlin-stdlib:1.5.31")
 
-    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.1")
-    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.1")
-    testImplementation("org.mockito:mockito-core:3.12.4")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testImplementation("org.junit.jupiter:junit-jupiter-engine:5.8.2")
+    testImplementation("org.mockito:mockito-core:4.2.0")
     testImplementation("org.spigotmc:spigot-api:1.17.1-R0.1-SNAPSHOT")
 }
 
@@ -40,6 +40,16 @@ tasks {
         from(sourceSets["main"].output)
         archiveBaseName.set(project.properties["pluginName"].toString())
         archiveVersion.set("")
+
+        manifest {
+            attributes["Main-Class"] = "com.github.mcsim415.sample.Main"
+        }
+        from(sourceSets.main.get().output)
+
+        dependsOn(configurations.runtimeClasspath)
+        from({
+            configurations.runtimeClasspath.get().filter { it.name.endsWith("jar") }.map { zipTree(it) }
+        })
 
         doLast {
             var dest = File(rootDir, ".debug/plugins")

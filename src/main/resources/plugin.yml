@@ -4,3 +4,7 @@ version: '1.0.0'
 author: mcsim415
 description: Plugin description
 api-version: 1.17
+
+libraries:
+  - org.jetbrains.kotlin:kotlin-stdlib:1.5.31
+  - org.jetbrains.kotlin:kotlin-reflect:1.5.31
